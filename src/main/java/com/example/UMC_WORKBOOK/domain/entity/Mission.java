@@ -3,6 +3,8 @@ package com.example.UMC_WORKBOOK.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -11,7 +13,9 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-class Mission {
+@NoArgsConstructor
+@RequiredArgsConstructor
+public class Mission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

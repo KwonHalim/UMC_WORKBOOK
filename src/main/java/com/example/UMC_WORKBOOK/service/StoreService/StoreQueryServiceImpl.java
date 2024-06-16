@@ -2,11 +2,14 @@ package com.example.UMC_WORKBOOK.service.StoreService;
 
 import com.example.UMC_WORKBOOK.domain.entity.Region;
 import com.example.UMC_WORKBOOK.domain.entity.Store;
+import com.example.UMC_WORKBOOK.repository.RegionRepository;
 import com.example.UMC_WORKBOOK.repository.StoreRepository;
+import com.example.UMC_WORKBOOK.web.dto.StoreDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -14,13 +17,29 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class StoreQueryServiceImpl implements StoreQueryService{
 
-
-
     private final StoreRepository storeRepository;
+    private final RegionRepository regionRepository;
 
     @Override
     public Optional<Store> findStore(Long id) {
-        return storeRepository.findById(id);
+        return Optional.empty();
     }
 
+
+
+    public Store createStore(StoreDTO storeDtO) {
+        // 1. Region 엔티티 조회
+        Region region = regionRepository.findById(storeDtO.getRegionId())
+                .orElseThrow(() -> new RuntimeException("Region not found"));
+
+        // 2. Store 엔티티 생성
+        Store store = new Store();
+        store.setName(storeDtO.getName());
+        store.setAddress(storeDtO.getAddress());
+        store.setScore(storeDtO.getScore());
+        store.setRegion(region);
+
+        // 3. Store 엔티티 저장
+        return storeRepository.save(store);
+    }
 }

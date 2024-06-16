@@ -1,10 +1,12 @@
 package com.example.UMC_WORKBOOK.service.StoreService;
 
 import com.example.UMC_WORKBOOK.converter.StoreConverter;
+import com.example.UMC_WORKBOOK.domain.entity.Mission;
 import com.example.UMC_WORKBOOK.domain.entity.Review;
 import com.example.UMC_WORKBOOK.repository.MemberRepository;
 import com.example.UMC_WORKBOOK.repository.ReviewRepository;
 import com.example.UMC_WORKBOOK.repository.StoreRepository;
+import com.example.UMC_WORKBOOK.repository.missionRepository;
 import com.example.UMC_WORKBOOK.web.dto.StoreRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,8 @@ public class StoreCommandServiceImpl implements StoreCommandService{
 
     private final StoreRepository storeRepository;
 
+    private final missionRepository missionRepository;
+
     @Override
     public Review createReview(Long memberId, Long storeId, StoreRequestDTO.ReveiwDTO request) {
 
@@ -31,4 +35,11 @@ public class StoreCommandServiceImpl implements StoreCommandService{
 
         return reviewRepository.save(review);
     }
+
+    @Override
+    public void createMission(String missionDescription, long storeId) {
+
+    }
+
+
 }

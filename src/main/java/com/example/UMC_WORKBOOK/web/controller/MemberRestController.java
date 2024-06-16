@@ -8,6 +8,7 @@ import com.example.UMC_WORKBOOK.web.dto.MemberRequestDTO;
 import com.example.UMC_WORKBOOK.web.dto.MemberResponseDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,4 +26,10 @@ public class MemberRestController {
         Member member = memberCommandService.joinMember(request);
         return ApiResponse.onSuccess(MemberConverter.toJoinResultDTO(member));
     }
+
+    @PostMapping("/challenge")
+    public void newMission() {
+
+    }
+
 }
