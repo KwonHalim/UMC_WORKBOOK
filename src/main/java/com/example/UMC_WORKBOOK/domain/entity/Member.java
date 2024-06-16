@@ -1,49 +1,71 @@
-package com.example.UMC_6th_workbook.domain.entity;
+package com.example.UMC_WORKBOOK.domain.entity;
 
-import com.example.UMC_6th_workbook.domain.Enum.Gender;
-import com.example.UMC_6th_workbook.domain.Enum.MemberStatus;
-import com.example.UMC_6th_workbook.domain.Enum.SocialType;
+import com.example.UMC_WORKBOOK.domain.Enum.Gender;
+import com.example.UMC_WORKBOOK.domain.Enum.MemberStatus;
+import com.example.UMC_WORKBOOK.domain.Enum.SocialType;
+import com.example.UMC_WORKBOOK.domain.common.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
+
 @Entity
-public class Member {
+@Getter
+@DynamicUpdate
+@DynamicInsert
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+public class Member extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, length = 20)
     private String name;
-    @Enumerated(EnumType.STRING)
-    private Gender gender;
-    private int age;
+
+    @Column(nullable = false, length = 40)
     private String address;
-    private String spec_address;
+
+    @Column(nullable = false, length = 40)
+    private String specAddress;
+
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(10)")
+    private Gender gender;
+
+    @Enumerated(EnumType.STRING)
+    private SocialType socialType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")
     private MemberStatus status;
-    private LocalDateTime inactive_date;
-    @Enumerated(EnumType.STRING)
-    private SocialType social_type;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+
+    private LocalDate inactiveDate;
+
+    //    @Column(nullable = false, length = 50)
     private String email;
-    private int point;
 
-    @OneToMany(mappedBy = "member")
-    private List<MemberMission> MemberMissions;
+    @ColumnDefault("0")
+    private Integer point;
 
-    @OneToMany(mappedBy = "member")
-    private List<MemberAgree> memberAgrees;
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<MemberAgree> memberAgreeList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member")
-    private List<MemberPrefer> memberPrefers;
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<MemberPrefer> memberPreferList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member")
-    private List<Review> reviews;
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Review> reviewList = new ArrayList<>();
 
-
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<MemberMission> memberMissionList = new ArrayList<>();
 }

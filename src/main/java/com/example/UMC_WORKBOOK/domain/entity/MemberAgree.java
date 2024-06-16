@@ -1,4 +1,4 @@
-package com.example.UMC_6th_workbook.domain.entity;
+package com.example.UMC_WORKBOOK.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -14,10 +14,10 @@ public class MemberAgree {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private com.example.UMC_6th_workbook.domain.entity.Member member;
+    private com.example.UMC_WORKBOOK.domain.entity.Member member;
     @ManyToOne
     @JoinColumn(name = "terms_id")
-    private com.example.UMC_6th_workbook.domain.entity.Terms terms;
+    private com.example.UMC_WORKBOOK.domain.entity.Terms terms;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
 

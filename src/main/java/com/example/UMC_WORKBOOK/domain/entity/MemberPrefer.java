@@ -1,11 +1,13 @@
-package com.example.UMC_6th_workbook.domain.entity;
+package com.example.UMC_WORKBOOK.domain.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+@Builder
 @Getter
 @Setter
 @Entity

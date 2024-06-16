@@ -1,32 +1,37 @@
-package com.example.UMC_6th_workbook.domain.entity;
+package com.example.UMC_WORKBOOK.domain.entity;
 
+import com.example.UMC_WORKBOOK.domain.common.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
-@Getter
-@Setter
 @Entity
-public class Store {
+@Getter
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+public class Store extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "region_id")
-    private com.example.UMC_6th_workbook.domain.entity.Region region;
+
     private String name;
+
     private String address;
-    private float score;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
 
-    @OneToMany(mappedBy = "store")
-    private List<Review> reviews;
+    private Float score;
 
-    @OneToMany(mappedBy = "store")
-    private List<Mission> Missions;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "region_id")
+    private Region region;
 
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    private List<Mission> missionList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    private List<Review> reviewList = new ArrayList<>();
 }

@@ -1,4 +1,4 @@
-package com.example.UMC_6th_workbook.domain.entity;
+package com.example.UMC_WORKBOOK.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

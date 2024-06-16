@@ -16,7 +16,7 @@ public class ReviewImage {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "review_id")
-    private com.example.UMC_6th_workbook.domain.entity.Review review;
+    private com.example.UMC_WORKBOOK.domain.entity.Review review;
     private String image_url;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;

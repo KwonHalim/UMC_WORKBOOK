@@ -1,4 +1,4 @@
-package com.example.UMC_6th_workbook.domain.entity;
+package com.example.UMC_WORKBOOK.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -18,7 +18,7 @@ public class Region {
     private LocalDateTime updated_at;
 
     @OneToMany(mappedBy = "region")
-    private List<com.example.UMC_6th_workbook.domain.entity.Store> Stores;
+    private List<Store> Stores;
 
 
 }

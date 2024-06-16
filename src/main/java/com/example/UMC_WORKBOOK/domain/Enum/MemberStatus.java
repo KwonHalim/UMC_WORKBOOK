@@ -1,4 +1,4 @@
-package com.example.UMC_6th_workbook.domain.Enum;
+package com.example.UMC_WORKBOOK.domain.Enum;
 
 public enum MemberStatus {
     ACTIVE,INACTIVE

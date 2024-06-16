@@ -1,6 +1,6 @@
-package com.example.UMC_6th_workbook.domain.entity;
+package com.example.UMC_WORKBOOK.domain.entity;
 
-import com.example.UMC_6th_workbook.domain.Enum.MemberStatus;
+import com.example.UMC_WORKBOOK.domain.Enum.MemberStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,10 +15,10 @@ public class MemberMission {
     private Long id;
     @ManyToOne
     @JoinColumn(name="member_id")
-    private com.example.UMC_6th_workbook.domain.entity.Member member;
+    private com.example.UMC_WORKBOOK.domain.entity.Member member;
     @ManyToOne
     @JoinColumn(name="misison_id")
-    private com.example.UMC_6th_workbook.domain.entity.Mission mission;
+    private com.example.UMC_WORKBOOK.domain.entity.Mission mission;
 
 
     @Enumerated(EnumType.STRING)
