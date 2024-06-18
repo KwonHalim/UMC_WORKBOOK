@@ -14,7 +14,6 @@ import java.util.List;
 @Setter
 @Entity
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class Mission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +28,4 @@ public class Mission {
     private LocalDateTime updated_at;
     @OneToMany(mappedBy = "mission")
     private List<MemberMission> memberMissions = new ArrayList<>();
-
-
 }

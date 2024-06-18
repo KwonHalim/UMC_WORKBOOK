@@ -28,17 +28,7 @@ public class StoreQueryServiceImpl implements StoreQueryService{
 
 
     public Store createStore(StoreDTO storeDtO) {
-        // 1. Region 엔티티 조회
-        Region region = regionRepository.findById(storeDtO.getRegionId())
-                .orElseThrow(() -> new RuntimeException("Region not found"));
-
-        // 2. Store 엔티티 생성
         Store store = new Store();
-        store.setName(storeDtO.getName());
-        store.setAddress(storeDtO.getAddress());
-        store.setScore(storeDtO.getScore());
-        store.setRegion(region);
-
         // 3. Store 엔티티 저장
         return storeRepository.save(store);
     }

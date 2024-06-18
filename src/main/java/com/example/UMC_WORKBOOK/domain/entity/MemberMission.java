@@ -15,10 +15,10 @@ public class MemberMission {
     private Long id;
     @ManyToOne
     @JoinColumn(name="member_id")
-    private com.example.UMC_WORKBOOK.domain.entity.Member member;
+    private Member member;
     @ManyToOne
     @JoinColumn(name="misison_id")
-    private com.example.UMC_WORKBOOK.domain.entity.Mission mission;
+    private Mission mission;
 
 
     @Enumerated(EnumType.STRING)

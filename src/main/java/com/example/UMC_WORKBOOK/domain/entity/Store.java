@@ -10,9 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 @Entity
 @Getter
-@Setter
 @Builder
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@NoArgsConstructor
 @AllArgsConstructor
 public class Store extends BaseEntity {
 
