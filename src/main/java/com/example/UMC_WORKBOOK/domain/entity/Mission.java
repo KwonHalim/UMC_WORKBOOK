@@ -1,20 +1,20 @@
 package com.example.UMC_WORKBOOK.domain.entity;
 
 
+import com.example.UMC_WORKBOOK.domain.common.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 @Getter
 @Setter
+@Builder
 @Entity
 @NoArgsConstructor
-public class Mission {
+@AllArgsConstructor
+public class Mission extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,8 +24,8 @@ public class Mission {
     private int reward;
     private LocalDateTime deadline;
     private String mission_spec;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+
+    private Integer amount;
     @OneToMany(mappedBy = "mission")
     private List<MemberMission> memberMissions = new ArrayList<>();
 }

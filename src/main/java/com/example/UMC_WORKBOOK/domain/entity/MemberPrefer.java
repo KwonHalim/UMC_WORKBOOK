@@ -1,27 +1,40 @@
 package com.example.UMC_WORKBOOK.domain.entity;
 
+import com.example.UMC_WORKBOOK.domain.common.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Builder
-@Getter
-@Setter
 @Entity
-public class MemberPrefer {
+@Getter
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+public class MemberPrefer extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private FoodCategory foodCategory;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private Long MemberPreferid;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Member_id")
+    private Member Member;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "foodCategory_id")
+    private FoodCategory foodCategory;
+
+
+
+
+    public void setMember(Member Member){
+        if(this.Member != null)
+            Member.getMemberPreferList().remove(this);
+        this.Member = Member;
+        Member.getMemberPreferList().add(this);
+    }
+
+    public void setFoodCategory(FoodCategory foodCategory){
+        this.foodCategory = foodCategory;
+    }
 }

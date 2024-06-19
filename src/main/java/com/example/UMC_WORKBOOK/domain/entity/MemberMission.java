@@ -1,15 +1,19 @@
 package com.example.UMC_WORKBOOK.domain.entity;
 
 import com.example.UMC_WORKBOOK.domain.Enum.MemberStatus;
+import com.example.UMC_WORKBOOK.domain.Enum.MissionType;
+import com.example.UMC_WORKBOOK.domain.common.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-public class MemberMission {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class MemberMission extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,10 +26,10 @@ public class MemberMission {
 
 
     @Enumerated(EnumType.STRING)
-    private MemberStatus status;
+    private MissionType missionType;
 
-
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    public void setMissionType(MissionType t){
+        this.missionType = t;
+    }
 
 }

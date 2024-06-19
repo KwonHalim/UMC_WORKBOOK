@@ -5,14 +5,13 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 
 public class StoreRequestDTO {
-
     @Getter
-    public static class ReveiwDTO{
+    public static class AddStoreDTO {
         @NotBlank
-        String title;
+        String storeName;
+
         @NotNull
-        Float score;
-        @NotBlank
-        String body;
+        Long regionId;
+
     }
 }
