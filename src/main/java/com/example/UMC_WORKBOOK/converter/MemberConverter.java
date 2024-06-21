@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class MemberConverter {
     public static MemberResponseDTO.JoinReslutDTO toJoinResultDTO(Member member){
         return MemberResponseDTO.JoinReslutDTO.builder()
-                .memberId(Member.getId())
+                .memberId(member.getMemberId())
                 .createdAt(LocalDateTime.now())
                 .build();
     }

@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public interface StoreCommandService {
 
-    Store addStore(StoreRequestDTO.AddStoreRequestDTO request);
+    Store addStore(StoreRequestDTO.AddStoreDTO request);
 
     Optional<Store> findById(Long id);
     Boolean existsById(Long id);

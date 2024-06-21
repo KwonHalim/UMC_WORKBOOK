@@ -10,10 +10,10 @@ public class ReviewRequestDTO {
     @Getter
     public static class PostReviewDTO {
         @NotNull
-        Long restaurantId;
+        Long storeId;
 
         @NotNull
-        Long userId;
+        Long memberId;
 
         @NotNull
         Float score;

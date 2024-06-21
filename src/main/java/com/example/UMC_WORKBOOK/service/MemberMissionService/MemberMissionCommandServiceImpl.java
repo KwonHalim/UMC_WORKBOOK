@@ -7,7 +7,7 @@ import com.example.UMC_WORKBOOK.domain.entity.Member;
 import com.example.UMC_WORKBOOK.domain.entity.MemberMission;
 import com.example.UMC_WORKBOOK.repository.MemberMissionRepository;
 import com.example.UMC_WORKBOOK.repository.MemberRepository;
-import jakarta.transaction.Transactional;
+import com.example.UMC_WORKBOOK.web.dto.MemberMissionPatchRequestDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -17,17 +17,17 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Slf4j //logger
-public class MemberMissionCommandServiceImpl implements MemberMissionCommandService{
+public class MemberMissionCommandServiceImpl implements MemberMissionCommandService {
     private final MemberMissionRepository memberMissionRepository;
     private final MemberRepository memberRepository;
-    @Override
-    @Transactional
-    public MemberMission patchMemberMissionToDoing(Long missionId, MemberMissionPatchRequestDTO.PatchUserMissionDTO request){
 
+
+    @Override
+    public MemberMission patchMemberMissionToDoing(Long missionId, MemberMissionPatchRequestDTO.PatchMemberMissionDTO request) {
         MemberMission memberMission = memberMissionRepository.findMissionByMission_MissionIdAndMember_MemberId(missionId, request.getMemberId())
                 .orElseThrow(() -> new MissionHandler(ErrorStatus.MISSION_NOT_FOUND));
 
-        if(memberMission.getMissionType() == MissionType.doing)
+        if (memberMission.getMissionType() == MissionType.doing)
             throw new MissionHandler(ErrorStatus.MISSION_ALREADY_DOING);
         else
             memberMission.setMissionType(MissionType.doing);
@@ -35,6 +35,18 @@ public class MemberMissionCommandServiceImpl implements MemberMissionCommandServ
         return memberMissionRepository.save(memberMission);
     }
 
+    @Override
+    public MemberMission patchMemberMissionToDone(Long missionId, MemberMissionPatchRequestDTO.PatchMemberMissionDTO request) {
+        MemberMission memberMission = memberMissionRepository.findMissionByMission_MissionIdAndMember_MemberId(missionId, request.getMemberId())
+                .orElseThrow(() -> new MissionHandler(ErrorStatus.MISSION_NOT_FOUND));
+
+        if (memberMission.getMissionType() == MissionType.done)
+            throw new MissionHandler(ErrorStatus.MISSION_ALREADY_DOING);
+        else
+            memberMission.setMissionType(MissionType.done);
+
+        return memberMissionRepository.save(memberMission);
+    }
 
     @Override
     public Page<MemberMission> getMissionList(Long MemberId, Integer page) {

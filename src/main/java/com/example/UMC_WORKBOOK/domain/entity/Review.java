@@ -1,5 +1,6 @@
 package com.example.UMC_WORKBOOK.domain.entity;
 
+import com.example.UMC_WORKBOOK.domain.ReviewImg;
 import com.example.UMC_WORKBOOK.domain.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -33,7 +34,7 @@ public class Review extends BaseEntity {
     private Store store;
 
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
-    private List<ReviewImage> reviewImageList;
+    private List<ReviewImg> reviewImageList;
 
     public void setMember(Member member){
         if(this.member != null)

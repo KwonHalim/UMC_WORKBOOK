@@ -17,7 +17,7 @@ import java.util.List;
 public class Mission extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long missionId;
     @ManyToOne
     @JoinColumn(name = "store_id")
     private Store store;

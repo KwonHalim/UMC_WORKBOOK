@@ -22,7 +22,7 @@ public class ReviewConverter {
 
     public static ReviewResponseDTO.PostReviewResultDTO toPostReviewResultDTO(Review review){
         return ReviewResponseDTO.PostReviewResultDTO.builder()
-                .reviewId(review.getReviewId())
+                .reviewId(review.getId())
                 .createdAt(review.getCreatedAt())
                 .build();
     }
@@ -40,9 +40,8 @@ public class ReviewConverter {
     public static Review toReview(ReviewRequestDTO.PostReviewDTO request){
         return Review.builder()
                 .reviewImageList(toReviewImgList(request.getReviewImg()))
-                .reviewBody(request.getReviewBody())
+                .body(request.getReviewBody())
                 .score(request.getScore())
-                .createdAt(LocalDateTime.now())
                 .build();
     }
 

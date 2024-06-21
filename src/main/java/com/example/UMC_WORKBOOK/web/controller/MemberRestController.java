@@ -6,7 +6,7 @@ import com.example.UMC_WORKBOOK.domain.entity.Member;
 import com.example.UMC_WORKBOOK.domain.entity.Review;
 import com.example.UMC_WORKBOOK.service.MemberService.MemberCommandService;
 import com.example.UMC_WORKBOOK.service.MemberService.MemberQueryService;
-import com.example.UMC_WORKBOOK.web.dto.MemberMissionRequestDTO;
+import com.example.UMC_WORKBOOK.web.dto.MemberResponseDTO;
 import com.example.UMC_WORKBOOK.web.dto.MemberRequestDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -29,6 +29,8 @@ public class MemberRestController {
     private final MemberQueryService memberQueryService;
 
     @PostMapping("/")
+    @Operation(summary = "모든 유저 조회 API")
+
     public ApiResponse<MemberResponseDTO.JoinReslutDTO> join(@RequestBody @Valid MemberRequestDTO.JoinDto request){
         Member Member = MemberCommandService.joinMember(request);
         return ApiResponse.onSuccess(MemberConverter.toJoinResultDTO((Member)));
@@ -49,7 +51,7 @@ public class MemberRestController {
     public ApiResponse<MemberResponseDTO.GetMyReviewListDTO> getReviewList(
              @PathVariable(name = "MemberId") Long MemberId
             , @RequestParam(name = "page") Integer page){
-        Page<Review> review = MemberQueryService.getReviewList(MemberId,page-1);
+        Page<Review> review = memberQueryService.getReviewList(MemberId,page-1);
         return ApiResponse.onSuccess(MemberConverter.getMyReviewListDTO(review));
     }
 }

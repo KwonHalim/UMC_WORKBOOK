@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface MemberMissionRepository extends JpaRepository<MemberMission, Object> {
-    Optional<MemberMission> findMissionByMission_MissionIdAndMember_MemberId(Long missionId, Long userId);
+    Optional<MemberMission> findMissionByMission_MissionIdAndMember_MemberId(Long Id, Long memberId);
 
     Page<MemberMission> findAllByMemberAndMissionType(Member member, MissionType missionType , PageRequest pageRequest);
 }

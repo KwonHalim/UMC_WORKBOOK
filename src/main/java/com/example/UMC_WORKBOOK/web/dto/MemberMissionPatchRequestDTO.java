@@ -5,9 +5,9 @@ import lombok.Getter;
 
 public class MemberMissionPatchRequestDTO {
     @Getter
-    public static class PatchUserMissionDTO {
+    public static class PatchMemberMissionDTO {
 
         @NotNull
-        Long userId;
+        Long memberId;
     }
 }

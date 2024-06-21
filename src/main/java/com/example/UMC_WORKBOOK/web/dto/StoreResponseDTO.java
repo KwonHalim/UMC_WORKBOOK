@@ -62,7 +62,7 @@ public class StoreResponseDTO {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class MissionPreViewDTO{
-        Integer dDay;
+        LocalDateTime dDay;
         Integer amount;
         Integer point;
         LocalDate createdAt;

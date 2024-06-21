@@ -10,6 +10,7 @@ import com.example.UMC_WORKBOOK.domain.entity.Store;
 import com.example.UMC_WORKBOOK.repository.MemberRepository;
 import com.example.UMC_WORKBOOK.repository.ReviewRepository;
 import com.example.UMC_WORKBOOK.repository.StoreRepository;
+import com.example.UMC_WORKBOOK.web.dto.ReviewRequestDTO;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

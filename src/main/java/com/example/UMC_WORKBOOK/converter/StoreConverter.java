@@ -1,5 +1,6 @@
 package com.example.UMC_WORKBOOK.converter;
 
+import com.example.UMC_WORKBOOK.domain.entity.Mission;
 import com.example.UMC_WORKBOOK.domain.entity.Review;
 import com.example.UMC_WORKBOOK.domain.entity.Store;
 import com.example.UMC_WORKBOOK.web.dto.StoreRequestDTO;
@@ -28,10 +29,10 @@ public class StoreConverter {
     public static StoreResponseDTO.ReviewPreViewDTO reviewPreViewDTO(Review review){
 
         return StoreResponseDTO.ReviewPreViewDTO.builder()
-                .ownerNickname(review.getUser().getName())
+                .ownerNickname(review.getMember().getName())
                 .score(review.getScore())
                 .createdAt(review.getCreatedAt().toLocalDate())
-                .body(review.getReviewBody())
+                .body(review.getBody())
                 .build();
     }
 
@@ -51,9 +52,9 @@ public class StoreConverter {
 
     public static StoreResponseDTO.MissionPreViewDTO missionPreViewDTO(Mission mission){
         return StoreResponseDTO.MissionPreViewDTO.builder()
-                .dDay(mission.getDDay())
+                .dDay(mission.getDeadline())
                 .amount(mission.getAmount())
-                .point(mission.getPoint())
+                .point(mission.getReward())
                 .createdAt(mission.getCreatedAt().toLocalDate())
                 .build();
     }

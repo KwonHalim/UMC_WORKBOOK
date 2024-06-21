@@ -23,11 +23,11 @@ public class StoreCommandServiceImpl implements StoreCommandService{
     private final RegionRepository regionRepository;
 
     @Override
-    public Store addStore(StoreRequestDTO.AddStoreRequestDTO request) {
+    public Store addStore(StoreRequestDTO.AddStoreDTO request) {
 
         Store newStore = StoreConverter.toStore(request);
 
-        newStore.setRegion(regionRepository.findById(request.getId())
+        newStore.setRegion(regionRepository.findById(request.getRegionId())
                 .orElseThrow(() -> new RegionHandler(ErrorStatus.REGION_NOT_FOUND)));
 
         return storeRepository.save(newStore);
